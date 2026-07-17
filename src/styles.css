@@ -1,0 +1,306 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------
+   BestNotes Design System
+   Inspired by Apple, Stripe, Notion — minimal, premium, trustworthy.
+   All colors as CSS variables. Never hardcode colors in components.
+------------------------------------------------------------------ */
+
+@theme inline {
+  --font-heading: "Poppins", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-dark: var(--dark);
+
+  --shadow-soft: 0 1px 2px 0 rgb(15 23 42 / 0.04),
+    0 4px 12px -2px rgb(15 23 42 / 0.06);
+  --shadow-lifted: 0 10px 40px -12px rgb(37 99 235 / 0.18),
+    0 4px 16px -4px rgb(15 23 42 / 0.08);
+  --shadow-glow: 0 20px 60px -20px rgb(37 99 235 / 0.4);
+}
+
+:root {
+  --background: oklch(0.985 0.005 250);   /* #F8FAFC */
+  --foreground: oklch(0.22 0.05 264);     /* #0F172A */
+  --dark: oklch(0.22 0.05 264);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.05 264);
+
+  --primary: oklch(0.58 0.22 264);        /* #2563EB Royal Blue */
+  --primary-foreground: oklch(1 0 0);
+  --primary-soft: oklch(0.95 0.03 264);
+
+  --secondary: oklch(0.968 0.01 250);
+  --secondary-foreground: oklch(0.22 0.05 264);
+
+  --muted: oklch(0.965 0.008 250);
+  --muted-foreground: oklch(0.55 0.03 250);  /* #64748B */
+
+  --accent: oklch(0.95 0.03 264);
+  --accent-foreground: oklch(0.4 0.15 264);
+
+  --gold: oklch(0.74 0.13 85);            /* #C9A227 */
+  --gold-foreground: oklch(0.22 0.05 264);
+
+  --success: oklch(0.65 0.17 145);        /* #16A34A */
+  --success-foreground: oklch(1 0 0);
+
+  --destructive: oklch(0.6 0.24 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.92 0.01 250);
+  --input: oklch(0.92 0.01 250);
+  --ring: oklch(0.58 0.22 264);
+}
+
+.dark {
+  --background: oklch(0.17 0.03 264);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.22 0.04 264);
+  --card-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.66 0.2 264);
+  --primary-foreground: oklch(1 0 0);
+  --primary-soft: oklch(0.28 0.08 264);
+  --secondary: oklch(0.26 0.04 264);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.25 0.03 264);
+  --muted-foreground: oklch(0.72 0.02 250);
+  --accent: oklch(0.28 0.08 264);
+  --accent-foreground: oklch(0.9 0.05 264);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+@utility glass {
+  background: color-mix(in oklch, var(--color-background) 70%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid color-mix(in oklch, var(--color-border) 60%, transparent);
+}
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  box-shadow: var(--shadow-lifted);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+@utility btn-primary {
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: var(--color-card);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+@utility btn-ghost {
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-1px);
+  }
+}
+
+@utility btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--color-gold), oklch(0.78 0.16 75));
+  color: var(--color-gold-foreground);
+  box-shadow: 0 10px 30px -10px oklch(0.74 0.13 85 / 0.5);
+  transition: transform 0.2s ease;
+}
+@utility btn-gold {
+  &:hover { transform: translateY(-1px); }
+}
+
+@utility card-soft {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+}
+@utility card-soft {
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lifted);
+    border-color: color-mix(in oklch, var(--color-primary) 30%, var(--color-border));
+  }
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--color-muted);
+  color: var(--color-muted-foreground);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+@utility chip {
+  &:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+@utility chip-active {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+@utility badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--color-gold) 15%, transparent);
+  color: var(--color-gold);
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid color-mix(in oklch, var(--color-gold) 30%, transparent);
+}
+
+@utility badge-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--color-success) 12%, transparent);
+  color: var(--color-success);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@utility section {
+  padding-block: 5rem;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@utility gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), oklch(0.55 0.24 290));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
