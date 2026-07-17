@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as HaryanaGroupDSyllabusRouteImport } from './routes/haryana-group-d-syllabus'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 
+const HaryanaGroupDSyllabusRoute = HaryanaGroupDSyllabusRouteImport.update({
+  id: '/haryana-group-d-syllabus',
+  path: '/haryana-group-d-syllabus',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DownloadRoute = DownloadRouteImport.update({
   id: '/download',
   path: '/download',
@@ -32,35 +38,51 @@ const ProductIdRoute = ProductIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/download': typeof DownloadRoute
+  '/haryana-group-d-syllabus': typeof HaryanaGroupDSyllabusRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/download': typeof DownloadRoute
+  '/haryana-group-d-syllabus': typeof HaryanaGroupDSyllabusRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/download': typeof DownloadRoute
+  '/haryana-group-d-syllabus': typeof HaryanaGroupDSyllabusRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/download' | '/product/$id'
+  fullPaths: '/' | '/download' | '/haryana-group-d-syllabus' | '/product/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/download' | '/product/$id'
-  id: '__root__' | '/' | '/download' | '/product/$id'
+  to: '/' | '/download' | '/haryana-group-d-syllabus' | '/product/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/download'
+    | '/haryana-group-d-syllabus'
+    | '/product/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DownloadRoute: typeof DownloadRoute
+  HaryanaGroupDSyllabusRoute: typeof HaryanaGroupDSyllabusRoute
   ProductIdRoute: typeof ProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/haryana-group-d-syllabus': {
+      id: '/haryana-group-d-syllabus'
+      path: '/haryana-group-d-syllabus'
+      fullPath: '/haryana-group-d-syllabus'
+      preLoaderRoute: typeof HaryanaGroupDSyllabusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/download': {
       id: '/download'
       path: '/download'
@@ -88,6 +110,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DownloadRoute: DownloadRoute,
+  HaryanaGroupDSyllabusRoute: HaryanaGroupDSyllabusRoute,
   ProductIdRoute: ProductIdRoute,
 }
 export const routeTree = rootRouteImport

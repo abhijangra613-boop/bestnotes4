@@ -32,6 +32,7 @@ export function Navbar() {
 
   const links = [
     { to: "/", label: "Home" },
+    { to: "/haryana-group-d-syllabus", label: "Group D Syllabus" },
     { to: "/#notes", label: "All Notes" },
     { to: "/#bundle", label: "Bundle" },
     { to: "/#about", label: "About" },
